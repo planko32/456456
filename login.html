@@ -7,16 +7,18 @@
   <style>
     :root {
       --bg: #020617;
-      --card-bg: #020617;
+      --shell-bg:#000;
+      --card-bg: #000;
       --accent: #22c55e;
-      --border-subtle: rgba(148, 163, 184, 0.45);
+      --border-subtle: #1f2937;
+      --border-strong: #111827;
       --text-main: #e5e7eb;
       --text-soft: #9ca3af;
       --error: #fb7185;
-      --btn-disabled: #020817;
+      --btn-disabled: #020617;
       --btn-text-disabled: #6b7280;
       --input-bg: #020617;
-      --shadow-soft: 0 20px 60px rgba(15, 23, 42, 0.9);
+      --shadow-soft: 0 25px 70px rgba(15, 23, 42, 0.95);
     }
 
     * {
@@ -28,579 +30,280 @@
     body {
       min-height: 100vh;
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-      background: var(--bg);
+      font-family: system-ui;
+      background: #000;
       color: var(--text-main);
       display: flex;
-      align-items: stretch;
       justify-content: center;
     }
 
     .page {
       width: 100%;
       max-width: 480px;
-      min-height: 100vh;
-      background: #020617;
-      display: flex;
-      flex-direction: column;
-      color: var(--text-main);
+      background:#000;
     }
 
-    /* ==== HERO (TOP BANNER) ==== */
     .hero {
       position: relative;
       width: 100%;
-      height: 210px;
-      background:
-        radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.65), transparent 60%),
-        radial-gradient(circle at 85% 15%, rgba(45, 212, 191, 0.7), transparent 60%),
-        radial-gradient(circle at 50% 90%, rgba(56, 189, 248, 0.55), transparent 65%),
-        linear-gradient(135deg, #020617 0%, #020617 10%, #020617 20%, #020617 25%, #020617 30%, #020617 40%, #020617 55%, #020617 100%);
+      height: 240px; /* نزلنا الصورة */
+      background:linear-gradient(135deg,#000 0%,#000 100%);
       overflow: hidden;
-    }
-
-    .hero-layer-lines {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.4), transparent 55%),
-        repeating-radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.2), rgba(15, 23, 42, 0.2) 1px, transparent 1px, transparent 4px);
-      mix-blend-mode: screen;
-      opacity: 0.4;
-      pointer-events: none;
-    }
-
-    .hero-topbar {
-      position: absolute;
-      inset: 0 0 auto 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 14px 0;
-      z-index: 2;
-    }
-
-    .icon-button {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      border: 0;
-      background: rgba(0, 0, 0, 0.55);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: #e5e7eb;
-      cursor: pointer;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.65);
-    }
-
-    .icon-button span {
-      font-size: 18px;
-      line-height: 1;
-      transform: translateY(-1px);
-    }
-
-    .icon-button--secondary span {
-      font-size: 16px;
-      transform: translateY(0);
     }
 
     .hero-center {
       position: absolute;
-      inset: auto 0 40px 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 0 32px;
+      inset:auto 0 20px 0; /* نزلنا */
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+      padding:0 32px;
       z-index: 1;
     }
 
     .hero-logo {
-      width: 72px;
-      height: 72px;
-      border-radius: 18px;
-      border: 1px solid rgba(15, 23, 42, 0.7);
-      background:
-        radial-gradient(circle at 30% 20%, #e5f9ff, #22c55e 35%, #0f172a 70%),
-        linear-gradient(145deg, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.2));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.85);
-      margin-bottom: 10px;
-      position: relative;
-      overflow: hidden;
+      width: 82px;
+      height: 82px;
+      border-radius: 24px;
+      background: radial-gradient(circle at 0 0, rgba(226, 232, 240, 0.96), transparent 55%),
+                  radial-gradient(circle at 100% 0, rgba(134, 239, 172, 0.9), transparent 55%),
+                  linear-gradient(145deg, #22c55e, #047857 55%, #020617 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-bottom:10px;
     }
 
     .hero-logo-inner {
-      width: 38px;
-      height: 38px;
+      width: 40px;
+      height: 40px;
       border-radius: 999px;
-      border: 1.5px solid rgba(15, 23, 42, 0.9);
-      background: radial-gradient(circle at 30% 25%, #e0f2fe, #22c55e 55%, #0f172a 90%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #020617;
-      font-weight: 800;
-      font-size: 18px;
-      letter-spacing: 0.03em;
+      background: radial-gradient(circle at 30% 25%, #e0f2fe,#22c55e 55%, #0f172a 95%);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-weight:800;
+      font-size:18px;
     }
 
     .hero-title {
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.26em;
       text-transform: uppercase;
       margin-bottom: 4px;
     }
 
     .hero-subtitle {
       font-size: 12px;
-      color: rgba(226, 232, 240, 0.92);
-      line-height: 1.45;
+      color: rgba(226,232,240,0.95);
+      line-height:1.45;
+      max-width:260px;
     }
 
-    /* ==== CONTENT / CARD ==== */
-
     .content {
-      flex: 1;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), #020617 30%);
-      padding: 16px 14px 18px;
+      padding:18px 14px 22px;
+      background:#000;
     }
 
     .card {
-      background: var(--card-bg);
-      border-radius: 18px 18px 0 0;
-      padding: 18px 14px 18px;
-      border-top: 1px solid rgba(15, 23, 42, 0.9);
-      border-inline: 1px solid rgba(15, 23, 42, 0.9);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .card-header {
-      margin-bottom: 14px;
+      background:#000;
+      border-radius:24px;
+      padding:18px 18px 20px;
+      border:1px solid var(--border-strong);
+      box-shadow:var(--shadow-soft);
     }
 
     .card-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 4px;
+      font-size:18px;
+      font-weight:600;
+      margin-bottom:4px;
     }
 
-    .card-subtitle {
-      font-size: 12px;
-      color: var(--text-soft);
-    }
-
-    .field-group {
-      margin-bottom: 14px;
-    }
+    .field-group { margin-bottom:14px; }
 
     .field-label {
-      font-size: 12px;
-      color: var(--text-soft);
-      margin-bottom: 6px;
+      font-size:12px;
+      color:var(--text-soft);
+      margin-bottom:6px;
     }
 
     .phone-row {
-      display: flex;
-      gap: 8px;
+      display:flex;
+      gap:8px;
     }
 
-    .select-country {
-      position: relative;
-      flex: 0 0 34%;
-    }
-
-    .select-country select {
-      width: 100%;
-      height: 44px;
-      padding: 0 30px 0 12px;
-      border-radius: 10px;
-      border: 1px solid var(--border-subtle);
-      background: var(--input-bg);
-      color: var(--text-main);
-      font-size: 13px;
-      outline: none;
-      appearance: none;
-    }
-
-    .select-country::after {
-      content: "";
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%) rotate(45deg);
-      width: 7px;
-      height: 7px;
-      border-right: 1.5px solid var(--text-soft);
-      border-bottom: 1.5px solid var(--text-soft);
-      pointer-events: none;
-    }
-
+    .select-country select,
     .input {
-      width: 100%;
-      height: 44px;
-      border-radius: 10px;
-      border: 1px solid var(--border-subtle);
-      background: var(--input-bg);
-      color: var(--text-main);
-      font-size: 13px;
-      padding: 0 12px;
-      outline: none;
+      width:100%;
+      height:44px;
+      border-radius:10px;
+      border:1px solid var(--border-subtle);
+      background:#030303;
+      color:#fff;
+      padding:0 12px;
     }
 
-    .input::placeholder {
-      color: rgba(148, 163, 184, 0.85);
-    }
-
-    .input:focus,
-    .select-country select:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.65);
-    }
+    .input::placeholder { color:#666; }
 
     .password-row {
-      position: relative;
-      display: flex;
-      align-items: center;
+      position:relative;
+      display:flex;
+      align-items:center;
     }
 
-    .password-row input {
-      padding-right: 44px;
-    }
+    .password-row input { padding-right:44px; }
 
     .password-toggle {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      border: none;
-      background: transparent;
-      color: var(--text-soft);
-      font-size: 16px;
-      cursor: pointer;
-      padding: 4px;
-    }
-
-    .password-toggle--active {
-      color: var(--accent);
-    }
-
-    .field-hint {
-      margin-top: 5px;
-      font-size: 11px;
-      color: var(--text-soft);
-    }
-
-    .field-error {
-      margin-top: 5px;
-      font-size: 11px;
-      color: var(--error);
-      display: none;
+      position:absolute;
+      right:10px;
+      top:50%;
+      transform:translateY(-50%);
+      background:transparent;
+      border:0;
+      color:#999;
+      cursor:pointer;
     }
 
     .options-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 12px 0 14px;
-      gap: 12px;
+      display:flex;
+      justify-content:space-between;
+      margin:12px 0 14px;
     }
 
     .checkbox {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      color: var(--text-soft);
-      cursor: pointer;
-    }
-
-    .checkbox input {
-      width: 14px;
-      height: 14px;
-      border-radius: 4px;
-      border: 1px solid var(--border-subtle);
-      accent-color: var(--accent);
-      cursor: pointer;
-    }
-
-    .link-inline {
-      font-size: 12px;
-      color: #38bdf8;
-      text-decoration: none;
-    }
-
-    .link-inline:hover {
-      text-decoration: underline;
+      display:flex;
+      align-items:center;
+      gap:6px;
+      font-size:12px;
+      color:var(--text-soft);
     }
 
     .btn-primary {
-      width: 100%;
-      height: 46px;
-      border-radius: 999px;
-      border: none;
-      background: var(--btn-disabled);
-      color: var(--btn-text-disabled);
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      cursor: not-allowed;
-      transition: background 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease, color 0.18s ease;
-      box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+      width:100%;
+      height:46px;
+      border-radius:999px;
+      background:#020617;
+      color:#666;
+      cursor:not-allowed;
     }
 
     .btn-primary--active {
-      background: linear-gradient(135deg, #22c55e, #16a34a);
-      color: #e5e7eb;
-      cursor: pointer;
-      box-shadow: 0 16px 40px rgba(22, 163, 74, 0.75);
-    }
-
-    .btn-primary--active:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 20px 50px rgba(22, 163, 74, 0.9);
+      background:linear-gradient(135deg,#22c55e,#16a34a);
+      color:#fff;
+      cursor:pointer;
     }
 
     .agreement {
-      margin-top: 12px;
-      font-size: 11px;
-      color: var(--text-soft);
-      line-height: 1.5;
-    }
-
-    .agreement a {
-      color: #38bdf8;
-      text-decoration: none;
-    }
-
-    .agreement a:hover {
-      text-decoration: underline;
+      margin-top:12px;
+      font-size:11px;
+      color:var(--text-soft);
     }
 
     .signup-row {
-      margin-top: 14px;
-      font-size: 12px;
-      color: var(--text-soft);
-      text-align: center;
+      margin-top:14px;
+      font-size:12px;
+      text-align:center;
+      color:var(--text-soft);
     }
 
-    .signup-row a {
-      color: #38bdf8;
-      text-decoration: none;
-    }
+    a{color:#38bdf8;text-decoration:none;}
 
-    .signup-row a:hover {
-      text-decoration: underline;
-    }
-
-    @media (min-width: 768px) {
-      body {
-        justify-content: center;
-      }
-      .page {
-        margin: 24px 0;
-        border-radius: 18px;
-        overflow: hidden;
-      }
-      .content {
-        padding-inline: 20px;
-      }
-      .card {
-        padding-inline: 18px;
-      }
-    }
   </style>
 </head>
 <body>
   <div class="page">
+
     <header class="hero">
-      <div class="hero-layer-lines"></div>
-      <div class="hero-topbar">
-        <button type="button" class="icon-button" id="backButton" aria-label="Back">
-          <span>‹</span>
-        </button>
-        <button type="button" class="icon-button icon-button--secondary" id="supportButton" aria-label="Support">
-          <span>🎧</span>
-        </button>
-      </div>
       <div class="hero-center">
         <div class="hero-logo">
           <div class="hero-logo-inner">E</div>
         </div>
         <div class="hero-title">EXARAI</div>
         <div class="hero-subtitle">
-          Unleash your creativity with the power of EXARAI. AI explore the future of AI.
+          Unleash your creativity with the power of EXARAI.
         </div>
       </div>
     </header>
 
     <main class="content">
       <section class="card">
-        <div class="card-header">
-          <h1 class="card-title">Log In</h1>
-          <p class="card-subtitle">Use your phone number and password to access your account.</p>
-        </div>
+
+        <h1 class="card-title">Log In</h1>
 
         <form id="loginForm" novalidate>
+
           <div class="field-group">
             <div class="field-label">Phone</div>
             <div class="phone-row">
               <div class="select-country">
-                <select id="countryCode" name="country_code">
-                  <option value="+961" selected>+961</option>
-                  <option value="+966">+966</option>
-                  <option value="+971">+971</option>
-                  <option value="+962">+962</option>
-                  <option value="+20">+20</option>
-                  <option value="+90">+90</option>
-                  <option value="+44">+44</option>
-                  <option value="+1">+1</option>
+                <select id="countryCode">
+                  <option>+961</option>
+                  <option>+966</option>
                 </select>
               </div>
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
-                class="input"
-                placeholder="Enter phone"
-                autocomplete="tel"
-                inputmode="tel"
-              />
+              <input id="phone" class="input" placeholder="Enter phone"/>
             </div>
-            <p class="field-error" id="phoneError">Please enter a valid phone number.</p>
           </div>
 
           <div class="field-group">
             <div class="field-label">Password</div>
             <div class="password-row">
-              <input
-                id="password"
-                name="password"
-                type="password"
-                class="input"
-                placeholder="Your password must be at least 8 characters"
-                minlength="8"
-                autocomplete="current-password"
-              />
-              <button type="button" class="password-toggle" aria-label="Toggle password visibility">
-                👁
-              </button>
+              <input id="password" class="input" type="password" placeholder="At least 8 characters"/>
+              <button type="button" class="password-toggle">👁</button>
             </div>
-            <p class="field-hint">Your password must be at least 8 characters.</p>
-            <p class="field-error" id="passwordError">Password must be at least 8 characters.</p>
           </div>
 
           <div class="options-row">
             <label class="checkbox">
-              <input
-                id="rememberMe"
-                name="remember_me"
-                type="checkbox"
-                checked
-              />
+              <input type="checkbox" checked/>
               <span>Remember account</span>
             </label>
-            <a href="#" class="link-inline">Forgot Password?</a>
+
+            <a href="#">Forgot Password?</a>
           </div>
 
-          <button id="loginButton" type="submit" class="btn-primary" disabled>
+          <button id="loginButton" class="btn-primary" disabled>
             Log In
           </button>
 
           <p class="agreement">
             By logging in, I agree to the TARM
-            <a href="#">Service Agreement</a>
-            and
+            <a href="#">Service Agreement</a> and
             <a href="#">Privacy Policy</a>.
           </p>
 
           <div class="signup-row">
             <span>Don't have an account yet?</span>
-            <a href="#" id="signupLink">Sign Up</a>
+            <a href="#">Sign Up</a>
           </div>
+
         </form>
       </section>
     </main>
   </div>
 
-  <script>
-    (function () {
-      const phoneInput = document.getElementById("phone");
-      const passwordInput = document.getElementById("password");
-      const loginButton = document.getElementById("loginButton");
-      const loginForm = document.getElementById("loginForm");
-      const phoneError = document.getElementById("phoneError");
-      const passwordError = document.getElementById("passwordError");
-      const passwordToggle = document.querySelector(".password-toggle");
-      const backButton = document.getElementById("backButton");
-      const signupLink = document.getElementById("signupLink");
 
-      function validate() {
-        const phoneValue = phoneInput.value.trim();
-        const passwordValue = passwordInput.value.trim();
+<script>
+(function(){
+ const phone=document.getElementById("phone");
+ const pass=document.getElementById("password");
+ const btn=document.getElementById("loginButton");
 
-        const isPhoneValid = phoneValue.length >= 6;
-        const isPasswordValid = passwordValue.length >= 8;
+ function check(){
+   if(phone.value.length>=6 && pass.value.length>=8){
+     btn.disabled=false;
+     btn.classList.add("btn-primary--active");
+   }else{
+     btn.disabled=true;
+     btn.classList.remove("btn-primary--active");
+   }
+ }
+ phone.oninput=check;
+ pass.oninput=check;
+})();
+</script>
 
-        if (isPhoneValid && isPasswordValid) {
-          loginButton.disabled = false;
-          loginButton.classList.add("btn-primary--active");
-        } else {
-          loginButton.disabled = true;
-          loginButton.classList.remove("btn-primary--active");
-        }
-      }
-
-      phoneInput.addEventListener("input", validate);
-      passwordInput.addEventListener("input", validate);
-
-      if (passwordToggle) {
-        passwordToggle.addEventListener("click", function () {
-          const current = passwordInput.getAttribute("type");
-          const next = current === "password" ? "text" : "password";
-          passwordInput.setAttribute("type", next);
-          passwordToggle.classList.toggle("password-toggle--active");
-        });
-      }
-
-      loginForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const phoneValue = phoneInput.value.trim();
-        const passwordValue = passwordInput.value.trim();
-
-        const isPhoneValid = phoneValue.length >= 6;
-        const isPasswordValid = passwordValue.length >= 8;
-
-        phoneError.style.display = isPhoneValid ? "none" : "block";
-        passwordError.style.display = isPasswordValid ? "none" : "block";
-
-        if (!isPhoneValid || !isPasswordValid) {
-          return;
-        }
-
-        // Demo redirect. Replace with real backend call later.
-        window.location.href = "home.html";
-      });
-
-      if (backButton) {
-        backButton.addEventListener("click", function () {
-          window.history.back();
-        });
-      }
-
-      if (signupLink) {
-        signupLink.addEventListener("click", function (event) {
-          event.preventDefault();
-          window.location.href = "register.html";
-        });
-      }
-    })();
-  </script>
 </body>
 </html>
